@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditional-Counter</title>
+
+    <style>
+        body{
+            min-width:50px;
+            width: fit-content;
+            display:block;
+            margin:auto auto;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #text{
+            font-size: 25px;
+            color:#8c8c8b; 
+        }
+        input{
+            width:500px;
+            border: #8c8c8b;
+            padding:15px;
+            margin: 10px 0px;
+            border-color: #8c8c8b;
+            background-color: #f2f2f2;
+            outline-color: #8c8c8b;
+            border-radius: 10px;
+
+            font-size:40px;
+        }
+
+        #counter{
+            display:flex;
+            font-size: 25px;
+            align-content:centre;
+            justify-content: end;
+            margin:0px;
+        }
+        #message{
+            font-size: 25px;
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div style="min-height: 100px;height:300px;"></div>
+    <div id="text">Your full name </div>
+    <input id="content" onkeyup="counterFunction(this.value)" type="text">
+    <p id="counter"> count 0 </p>
+    <p id="message">Your message is small</p>
+    
+
+<script>
+
+    function counterFunction(data){
+
+        var len = data.length;
+	    document.getElementById("counter").innerHTML = "count " + len ;
+
+        messageDisplay(len);
+    }
+
+    function messageDisplay(len){
+
+        if (len <= 10 ){
+            document.getElementById("message").innerHTML = "Your message is small";
+            document.getElementById("message").style.color = "red";    
+        }
+        else{
+            if(len <=15 ){
+                document.getElementById("message").innerHTML = "Your message is medium";
+                document.getElementById("message").style.color = "blue";
+            }
+            else{
+                document.getElementById("message").innerHTML = "Your message is large";
+                document.getElementById("message").style.color = "green";
+            }
+        }
+
+    }
+
+</script>
+</body>
+</html>
