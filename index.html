@@ -61,6 +61,11 @@
         var len = data.length;
 	    document.getElementById("counter").innerHTML = "count " + len ;
 
+        messageDisplay(len);
+    }
+
+    function messageDisplay(len){
+
         if (len <= 10 ){
             document.getElementById("message").innerHTML = "Your message is small";
             document.getElementById("message").style.color = "red";    
