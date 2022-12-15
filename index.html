@@ -37,9 +37,17 @@
             justify-content: end;
             margin:0px;
         }
-        #message{
+        .red{
             font-size: 25px;
             color: red;
+        }
+        .blue{
+            font-size: 25px;
+            color: blue;
+        }
+        .green{
+            font-size: 25px;
+            color: green;
         }
 
     </style>
@@ -50,10 +58,10 @@
         <div style="min-height: 100px;height:300px;"></div>
         <div id="text">Your full name </div>
         <input id="content" type="text" v-model="message">
-        <p id="counter"> count {{ message.length }} </p>
-        <p v-if="message.length <= 10 " style="color: red;">Your message is small</p>
-        <p v-if="message.length > 10 && message.length <= 15" style="color: blue;">Your message is medium</p>
-        <p v-if="message.length > 15" style="color: green;">Your message is large</p>
+        <p id="counter"> count {{ count }} </p>
+
+        <p :class="selector">{{ textDisplayer }}</p>
+
     </div>
     
 
@@ -65,7 +73,32 @@ const app = new Vue({
             return {
                 message:""
             }
-        },           
+        },  
+        computed: {
+            count(){
+                return this.message.length ;
+            },
+
+            selector : function (){
+                return this.message.length <= 10 ? "red" : ( this.message.length > 15 ? "green" : "blue" ) ;
+            },
+
+            textDisplayer(){
+                let str;
+                if (this.message.length <=10){
+                    str = "Your message is small";
+                }
+                else{
+                    if (this.message.length <= 15 ){
+                        str = "Your message is medium";
+                    }
+                    else {
+                        str = "Your message is large";
+                    }
+                }
+                return str;
+            }
+        }        
 })
 
 </script>
