@@ -60,7 +60,7 @@
         <input id="content" type="text" v-model="message">
         <p id="counter"> count {{ count }} </p>
 
-        <p :class="selector">{{ textDisplayer }}</p>
+        <p :class="selector">Your message is {{ textDisplayer }}</p>
 
     </div>
     
@@ -86,14 +86,14 @@ const app = new Vue({
             textDisplayer(){
                 let str;
                 if (this.message.length <=10){
-                    str = "Your message is small";
+                    str = "small";
                 }
                 else{
                     if (this.message.length <= 15 ){
-                        str = "Your message is medium";
+                        str = "medium";
                     }
                     else {
-                        str = "Your message is large";
+                        str = "large";
                     }
                 }
                 return str;
