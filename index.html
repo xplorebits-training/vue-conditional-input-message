@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conditional-Counter</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
 
     <style>
         body{
@@ -38,50 +37,69 @@
             justify-content: end;
             margin:0px;
         }
-        #message{
+        .red{
             font-size: 25px;
             color: red;
+        }
+        .blue{
+            font-size: 25px;
+            color: blue;
+        }
+        .green{
+            font-size: 25px;
+            color: green;
         }
 
     </style>
 </head>
 <body>
 
-    <div style="min-height: 100px;height:300px;"></div>
-    <div id="text">Your full name </div>
-    <input id="content" onkeyup="counterFunction(this.value)" type="text">
-    <p id="counter"> count 0 </p>
-    <p id="message">Your message is small</p>
+    <div id="root">
+        <div style="min-height: 100px;height:300px;"></div>
+        <div id="text">Your full name </div>
+        <input id="content" type="text" v-model="message">
+        <p id="counter"> count {{ count }} </p>
+
+        <p :class="selector">Your message is {{ textDisplayer }}</p>
+
+    </div>
     
 
 <script>
 
-    function counterFunction(data){
-
-        var len = data.length;
-	    document.getElementById("counter").innerHTML = "count " + len ;
-
-        messageDisplay(len);
-    }
-
-    function messageDisplay(len){
-
-        if (len <= 10 ){
-            document.getElementById("message").innerHTML = "Your message is small";
-            document.getElementById("message").style.color = "red";    
-        }
-        else{
-            if(len <=15 ){
-                document.getElementById("message").innerHTML = "Your message is medium";
-                document.getElementById("message").style.color = "blue";
+const app = new Vue({
+        el: "#root",
+        data () {
+            return {
+                message:""
             }
-            else{
-                document.getElementById("message").innerHTML = "Your message is large";
-                document.getElementById("message").style.color = "green";
-            }
-        }
+        },  
+        computed: {
+            count(){
+                return this.message.length ;
+            },
 
-    }
+            selector : function (){
+                return this.message.length <= 10 ? "red" : ( this.message.length > 15 ? "green" : "blue" ) ;
+            },
+
+            textDisplayer(){
+                let str;
+                if (this.message.length <=10){
+                    str = "small";
+                }
+                else{
+                    if (this.message.length <= 15 ){
+                        str = "medium";
+                    }
+                    else {
+                        str = "large";
+                    }
+                }
+                return str;
+            }
+        }        
+})
 
 </script>
 </body>
